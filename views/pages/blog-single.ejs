@@ -1,0 +1,146 @@
+<%- include('../layout/mainLayout') %>
+<%- include('../partials/navbar') %>
+
+
+	<!--==========================
+    INSIDE HERO SECTION Section
+============================-->
+	<section class="page-image page-image-contact md-padding">
+		<h1 class="text-white text-center">BLOG</h1>
+	</section>
+
+	<!--==========================
+    Contact Section
+============================-->
+	<section id="blog" class="md-padding">
+		<div class="container">
+			<div class="row">
+				<main id="main" class="col-md-8">
+					<div class="blog">
+						<div class="blog-img">
+							<img class="img-fluid" src="./img/blog-post.jpg" alt="">
+						</div>
+						<img src="<%= post.post.image %>"  class="img-fluid img-thumbnail">
+						<div class="blog-content">
+							
+							<ul class="blog-meta">
+								<li><i class="fas fa-user"></i><%= post.author.name %></li>
+								<li><i class="fas fa-clock"></i><%= post.post.date.toLocaleDateString() %></li>
+							</ul>
+							<h3><%= post.post.title %></h3>
+							<p><%= post.post.content %></p>
+						</div>
+
+
+						<!-- blog comments -->
+						<div class="blog-comments">
+							<h3>Yorumlar</h3>
+							<!-- comment -->
+							<% post.comments.forEach(element => { %>
+								<div class="media">
+									<div class="media-body">
+										<h4 class="media-heading"><%= element.author.name %><span class="time"><%= element.comment.date.toLocaleDateString() %></span></h4>
+										<p><%= element.comment.content %></p>
+									</div>
+									
+								</div>
+								<% }); %>
+
+								<% if (post.comments.length === 0) { %>
+								<div class="alert">Hiçbir yorum yok.</div>	
+								<% } %>
+							<!-- /comment -->
+
+						</div>
+						<!-- /blog comments -->
+
+						<% if(locals.user) { %>
+						<!-- reply form -->
+						<div class="reply-form">
+							<h3>Yorum Bırak</h3>
+							<form method="POST">
+								<textarea class="form-control mb-4" row="5" name="commentContent"></textarea>
+								<button type="submit" class="main-btn">Gönder</button>
+							</form>
+						</div>
+						<!-- /reply form -->
+					<% } %>
+					</div>
+				</main>
+				<!-- /Main -->
+				
+				<aside id="aside" class="col-md-4">
+                    
+                    <div class="widget">
+						<div class="widget-search">
+							<input class="search-input form-control" type="text" placeholder="Search">
+							<button class="search-btn" type="button"><i class="fas fa-search"></i></button>
+						</div>
+					</div>
+					<!-- /Search -->
+                    
+                    
+					<!-- Category -->
+					<div class="widget">
+						<h3 class="mb-3">Category</h3>
+						<div class="widget-category">
+							<a href="#">Web Design<span>(7)</span></a>
+							<a href="#">Marketing<span>(142)</span></a>
+							<a href="#">Web Development<span>(74)</span></a>
+							<a href="#">Branding<span>(60)</span></a>
+							<a href="#">Photography<span>(5)</span></a>
+						</div>
+					</div>
+					<!-- /Category -->
+
+					<!-- Posts sidebar -->
+					<div class="widget">
+						<h3 class="mb-3">Latest Posts</h3>
+
+						<!-- single post -->
+						<div class="widget-post">
+							<a href="#">
+								<img class="img-fluid" src="./img/post1.jpg" alt=""> Lorem Ipsum
+							</a>
+							<ul class="blog-meta">
+								<li>Oct 18, 2017</li>
+							</ul>
+						</div>
+						<!-- /single post -->
+
+						<!-- single post -->
+						<div class="widget-post">
+							<a href="#">
+								<img class="img-fluid" src="./img/post2.jpg" alt=""> Lorem Ipsum
+							</a>
+							<ul class="blog-meta">
+								<li>Oct 18, 2017</li>
+							</ul>
+						</div>
+						<!-- /single post -->
+
+
+						<!-- single post -->
+						<div class="widget-post">
+							<a href="#">
+								<img class="img-fluid" src="./img/post3.jpg" alt=""> Lorem Ipsum
+							</a>
+							<ul class="blog-meta">
+								<li>Oct 18, 2017</li>
+							</ul>
+						</div>
+						<!-- /single post -->
+
+					</div>
+					<!-- /Posts sidebar -->
+
+				</aside>
+				
+				
+				
+			</div>
+
+		</div>
+	</section>
+
+	<%- include('../partials/footer') %>
